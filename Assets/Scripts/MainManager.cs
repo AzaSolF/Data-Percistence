@@ -18,10 +18,20 @@ public class MainManager : MonoBehaviour
     
     private bool m_GameOver = false;
 
-    
+    public Button menuButton;
+
+
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        
+    }
+
     void Start()
     {
+        menuButton = GetComponent<Button>();
+
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -53,13 +63,17 @@ public class MainManager : MonoBehaviour
                 Ball.AddForce(forceDir * 2.0f, ForceMode.VelocityChange);
             }
         }
-        else if (m_GameOver)
+
+        if (m_GameOver)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
+            
         }
+       
+
     }
 
     void AddPoint(int point)
@@ -72,5 +86,13 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+        
+
     }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene(0);
+    }
+    
 }
