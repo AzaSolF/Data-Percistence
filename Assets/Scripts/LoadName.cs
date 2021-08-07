@@ -5,12 +5,19 @@ using TMPro;
 
 public class LoadName : MonoBehaviour
 {
+ 
     // Start is called before the first frame update
     public TextMeshProUGUI displayPlayer;
 
+   
     public void Awake()
     {
         
-        displayPlayer.text = Scene1.menu.playerName;
+        displayPlayer.text = "Best Score   :   " + Scene1.menu.playerName + "   :   " ;
+    }
+
+    public void Update()
+    {
+        
     }
 }
