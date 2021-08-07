@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class ManagerMenu : MonoBehaviour
 {
+    public static ManagerMenu menu;
+    
 
     public Button startButton;
     // Start is called before the first frame update
+
+    
+
     void Start()
     {
         
@@ -22,6 +28,8 @@ public class ManagerMenu : MonoBehaviour
 
     public void LoadMain()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadSceneAsync(1);
+        
     }
+
 }
