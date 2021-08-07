@@ -30,8 +30,7 @@ public class MainManager : MonoBehaviour
 
     void Start()
     {
-        menuButton = GetComponent<Button>();
-
+       
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -86,7 +85,7 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
-        
+        menuButton.gameObject.SetActive(true);
 
     }
 
