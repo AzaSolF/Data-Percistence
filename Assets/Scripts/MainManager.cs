@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
+using System.IO;
+using UnityEditor;
 
-[System.Serializable]
 
 public class MainManager : MonoBehaviour
 {
@@ -14,6 +16,8 @@ public class MainManager : MonoBehaviour
 
     public Text ScoreText;
     public Text updateScore;
+    public TextMeshProUGUI displayPlayer;
+    
 
     public GameObject GameOverText;
     
@@ -23,19 +27,27 @@ public class MainManager : MonoBehaviour
     private bool m_GameOver = false;
 
     public Button menuButton;
+    public Button resetButton;
+    public Button exitGame;
 
-    private int bestScore;
-    private int updateBestScore;
+    public int highScore;
+    public string nameScorePlayer;
 
+    private bool paused;
+    public GameObject pausedScreen;
+    
     // Start is called before the first frame update
 
     private void Awake()
     {
-        
+        LoadName();
+        LoadScore();
+        DisplayBestScore();
     }
 
     void Start()
     {
+  
 
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
@@ -55,6 +67,8 @@ public class MainManager : MonoBehaviour
 
     private void Update()
     {
+        
+
         if (!m_Started)
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -71,14 +85,19 @@ public class MainManager : MonoBehaviour
 
         if (m_GameOver)
         {
-            bestScore = m_Points;
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                updateScore.text = $"{bestScore}";
+                
             }
             
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            ChangePaused();
         }
 
     }
@@ -87,20 +106,129 @@ public class MainManager : MonoBehaviour
     {
         m_Points += point;
         ScoreText.text = $"Score : {m_Points}";
-        updateScore.text = $"{m_Points}" ;
+        DisplayBestScore();
     }
 
     public void GameOver()
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
-        menuButton.gameObject.SetActive(true);
+        
+        Debug.Log("Score of player " + Scene1.menu.playerName + " is " + m_Points);
 
+        if (m_Points > highScore)
+        {
+            highScore = m_Points;
+            nameScorePlayer = Scene1.menu.playerName;
+            Debug.Log("Congratulations " + nameScorePlayer + " your score of  " + highScore + "  is the very high");
+        }
+        else
+        {
+            HighScore();
+            updateScore.text = nameScorePlayer;
+        }
+
+        DisplayBestScore();
+        SaveScore();
+        
     }
 
     public void Menu()
     {
+        
         SceneManager.LoadScene(0);
+        
+    }
+
+    
+    public void LoadName()
+    {
+        displayPlayer.text = "Playing  " +  Scene1.menu.playerName;
+        
+    }
+
+    public void HighScore()
+    {
+        m_Points = highScore;
+    }
+
+    public void DisplayBestScore()
+    {
+        updateScore.text = nameScorePlayer + $"   {highScore}";
+        
+    }
+
+    public void ResetScore()
+    {
+        highScore = 0;
+        DisplayBestScore();
+        SaveScore();
+    }
+
+    public void ChangePaused()
+    {
+        if (!paused)
+        {
+            paused = true;
+            pausedScreen.SetActive(true);
+            Time.timeScale = 0;
+        }
+
+        else
+        {
+            paused = false;
+            pausedScreen.SetActive(false);
+            Time.timeScale = 1;
+        }
+    }
+
+    [System.Serializable]
+    class SaveData
+    {
+        public int highScore;
+        public string nameScorePlayer;
+    }
+
+    public void ExitGame()
+    {
+
+#if UNITY_EDITOR
+
+        EditorApplication.ExitPlaymode();
+#else
+    Application.Quit(); // original code to quit Unity Player
+    
+
+#endif
+    }
+
+    public void SaveScore()
+    {
+        
+        SaveData data = new SaveData();
+        data.highScore = highScore;
+        data.nameScorePlayer = nameScorePlayer;
+
+        string json = JsonUtility.ToJson(data);
+        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+        
+    }
+
+    public void LoadScore()
+    {
+        string path = Application.persistentDataPath + "/savefile.json";
+
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+            highScore = data.highScore;
+            nameScorePlayer = data.nameScorePlayer;
+
+            Debug.Log(nameScorePlayer);
+        }
+
     }
 
     
