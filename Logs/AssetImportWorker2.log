@@ -790,3 +790,28 @@ System memory in use after: 137.3 MB.
 Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 3245.
 Total: 3.942600 ms (FindLiveObjects: 0.365500 ms CreateObjectMapping: 0.163100 ms MarkObjects: 3.376200 ms  DeleteObjects: 0.035400 ms)
 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.021728 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for Lumin target not found
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.77 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  3.443 seconds
+Platform modules already initialized, skipping
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.22 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2596 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 137.1 MB.
+System memory in use after: 137.3 MB.
+
+Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 3248.
+Total: 22.266800 ms (FindLiveObjects: 3.504600 ms CreateObjectMapping: 11.731500 ms MarkObjects: 6.971800 ms  DeleteObjects: 0.052500 ms)
+
