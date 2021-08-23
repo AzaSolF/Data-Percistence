@@ -815,3 +815,28 @@ System memory in use after: 137.3 MB.
 Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 3248.
 Total: 22.266800 ms (FindLiveObjects: 3.504600 ms CreateObjectMapping: 11.731500 ms MarkObjects: 6.971800 ms  DeleteObjects: 0.052500 ms)
 
+========================================================================
+Received Prepare
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 53.06 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 12 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 86.1 MB.
+System memory in use after: 86.3 MB.
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3248.
+Total: 9.298500 ms (FindLiveObjects: 0.805600 ms CreateObjectMapping: 0.561200 ms MarkObjects: 7.893900 ms  DeleteObjects: 0.034000 ms)
+
+========================================================================
+Received Prepare
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 20.51 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 12 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 86.1 MB.
+System memory in use after: 86.3 MB.
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3248.
+Total: 8.364500 ms (FindLiveObjects: 0.899800 ms CreateObjectMapping: 0.426000 ms MarkObjects: 6.985800 ms  DeleteObjects: 0.049500 ms)
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
